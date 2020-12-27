@@ -1,0 +1,6 @@
+---
+ - name: check something first
+   ???
+
+ - include: config.yml
+ - include: pkg-install.yml

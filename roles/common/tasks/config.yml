@@ -1,0 +1,22 @@
+---
+
+- name: add files in top-level user home
+  copy:
+    src: "files/conf/{{ item }}"
+    dest: "/home/{{ user }}/.{{ item }}"
+    loop: 
+   - gitconfig
+   - bashrc 
+   - config/redshift.conf
+   - config/sway/config
+
+
+- name: add executables to path
+  copy:
+    src: "files/{{ item }}"
+    dest: /usr/local/bin/
+  loop: 
+   - discord
+   - signal
+   - iphone-mount.sh
+   - ipod-mount.sh

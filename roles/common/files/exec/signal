@@ -1,0 +1,3 @@
+#!/bin/sh
+echo test
+exec /usr/bin/flatpak run --filesystem=home --branch=stable --arch=x86_64 org.signal.Signal "$@"

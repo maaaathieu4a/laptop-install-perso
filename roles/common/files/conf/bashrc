@@ -1,0 +1,31 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+
+alias ..='cd ..'
+alias l='ls -1'
+alias ansible-playbook='podman run --rm -v ~/.ssh:/root/.ssh:ro -v ${PWD}:/work -it localhost/ansible:latest ansible-playbook'
+
+HISTSIZE=9000
+HISTFILESIZE=$HISTSIZE
+HISTCONTROL=ignorespace:ignoredups
+
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+
+set show-all-if-ambiguous on
+set completion-ignore-case on

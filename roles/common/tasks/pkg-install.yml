@@ -1,0 +1,73 @@
+---
+#dnf repolist is slow it's quicker to check if the packages are installed
+- name: check if termite is installed
+    shell: dnf list termite
+  register: termite_present
+
+#apparently it should soon be available with yum_repository
+- name: enable repo for termite if not installed yet
+    shell: dnf copr enable skidnik/termite -y
+  when: termite_present is failed
+  args:
+    warn: false
+
+- name: install a long list of packages
+  dnf: 
+    name:
+#base desktop
+      - wayland
+      - sway
+      - swaylock
+      - swaybg
+      - swayidle
+      - glfw
+      - redshift
+      - brightnessctl
+#tools
+      - vim-enhanced
+      - slurp
+      - libimobiledevice-utils
+      - ShellCheck
+      - unrar
+      - screenfetch
+      - termite
+      - wget
+      - curl
+      - wl-clipboard
+      - htop
+      - ifuse
+      - git
+      - flatpack
+      - keepassxc
+      - w3m
+      - nmap
+      - dnf-plugin-system-upgrade-
+#multimedia
+      - ImageMagick
+      - imv
+      - ffmpeg
+      - mpv
+      - mpv-libs-devel
+      - dolphin
+      - pulseaudio
+      - pulseaudio-utils
+      - pavucontrol
+      - alsa-utils
+      - alsa-lib
+      - rhythmbox
+      - nicotine+
+      - youtube-dl
+      - deluge
+      - firefox
+      - gimp
+      - leafpad
+      - libreoffice
+      - zathura
+      - zathura-pdf-poppler
+  state: present
+
+
+#TODO  tag : thinkpad
+#iwl6000-firmware
+
+
